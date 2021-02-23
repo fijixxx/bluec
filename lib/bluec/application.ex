@@ -6,7 +6,6 @@ defmodule Bluec.Application do
   use Application
   require Logger
 
-  @impl true
   def start(_type, _args) do
     ExTwitter.configure(
       consumer_key: System.get_env("TWITTER_CONSUMER_KEY"),
@@ -16,6 +15,7 @@ defmodule Bluec.Application do
     )
 
     children = [
+      {Plug.Cowboy, scheme: :http, plug: Bluec.Router, options: [port: cowboy_port()]},
       {Bluec.State, []},
       {Bluec.Subscriber, []},
       {Bluec.Flusher, []}
@@ -31,4 +31,6 @@ defmodule Bluec.Application do
 
     Supervisor.start_link(children, opts)
   end
+
+  defp cowboy_port, do: Application.get_env(:bluec, :cowboy_port, 8080)
 end

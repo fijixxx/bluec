@@ -26,7 +26,8 @@ defmodule Bluec.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:oauther, "~> 1.1"},
       {:extwitter, "~> 0.12"},
-      {:jason, "~> 1.1"}
+      {:jason, "~> 1.1"},
+      {:plug_cowboy, "~> 2.0"}
     ]
   end
 end

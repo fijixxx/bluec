@@ -10,8 +10,6 @@ defmodule Bluec.Flusher do
   end
 
   defp ticker(date) do
-    task = Task.async(fn -> Logger.info(date) end)
-    Task.await(task)
     new_date = NaiveDateTime.local_now() |> to_string |> String.split(" ")
 
     unless(hd(new_date) == date) do
