@@ -4,8 +4,8 @@ defmodule Bluec.State do
 
   def init(state), do: {:ok, state}
 
-  def start_link(state \\ []) do
+  def start_link(_state) do
     Logger.info("State up")
-    Agent.start_link(fn -> state end, name: GbAgent)
+    Agent.start_link(fn -> [] end, name: GbAgent)
   end
 end

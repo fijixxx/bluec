@@ -17,7 +17,8 @@ defmodule Bluec.Application do
 
     children = [
       {Bluec.State, []},
-      {Bluec.Echo, []}
+      {Bluec.Subscriber, []},
+      {Bluec.Flusher, []}
       # Starts a worker by calling: Bluec.Worker.start_link(arg)
       # {Bluec.Worker, arg}
     ]
