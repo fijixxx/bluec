@@ -16,8 +16,10 @@ defmodule Bluec.Application do
 
     children = [
       {Plug.Cowboy, scheme: :http, plug: Bluec.Router, options: [port: cowboy_port()]},
-      {Bluec.State, []},
-      {Bluec.Subscriber, []},
+      {Bluec.State, [boss: "GB"]},
+      {Bluec.State, [boss: "Gr"]},
+      {Bluec.Subscriber, [boss: "GB"]},
+      {Bluec.Subscriber, [boss: "Gr"]},
       {Bluec.Flusher, []}
       # Starts a worker by calling: Bluec.Worker.start_link(arg)
       # {Bluec.Worker, arg}

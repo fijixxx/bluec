@@ -9,12 +9,12 @@ defmodule Bluec.Router do
     send_resp(conn, 200, "Welcome to Bluec")
   end
 
-  get "/v1/gb/today" do
-    send_resp(conn, 200, Bluec.Fetcher.today())
+  get "/v1/:boss/today" do
+    send_resp(conn, 200, Bluec.Fetcher.today(boss: boss))
   end
 
-  get "/v1/gb/now" do
-    send_resp(conn, 200, Bluec.Fetcher.now())
+  get "/v1/:boss/now" do
+    send_resp(conn, 200, Bluec.Fetcher.now(boss: boss))
   end
 
   match _ do

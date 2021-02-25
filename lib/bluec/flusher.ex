@@ -2,7 +2,7 @@ defmodule Bluec.Flusher do
   require Logger
   use Task
 
-  def init(state), do: {:ok, state}
+  # def init(state), do: {:ok, state}
 
   def start_link(_state) do
     Logger.info("Flusher up")
@@ -22,6 +22,7 @@ defmodule Bluec.Flusher do
 
   defp flusher do
     Logger.info("Flush")
-    Agent.update(GbAgent, fn _x -> [""] end)
+    Agent.update(:GB, fn _x -> [""] end)
+    Agent.update(:Gr, fn _x -> [""] end)
   end
 end

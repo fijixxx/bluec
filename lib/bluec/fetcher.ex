@@ -1,14 +1,14 @@
 defmodule Bluec.Fetcher do
   require Logger
 
-  def today do
-    today = Agent.get(GbAgent, & &1)
+  def today(boss: boss) do
+    today = Agent.get(String.to_atom(boss), & &1)
     count = (Enum.count(today) - 1) |> to_string
     count
   end
 
-  def now do
-    today = Agent.get(GbAgent, & &1)
+  def now(boss: boss) do
+    today = Agent.get(String.to_atom(boss), & &1)
     count = Enum.filter(today, fn x -> now_filter(x) > 0 end) |> Enum.count() |> to_string
     count
   end
