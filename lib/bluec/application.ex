@@ -28,7 +28,7 @@ defmodule Bluec.Application do
     ]
 
     states = Enum.map(boss_list, fn x -> {Bluec.State, [boss: x]} end)
-    subscribers = Enum.map(boss_list, fn x -> {Bluec.Subscriber, [boss: x]} end)
+    subscribers = [{Bluec.Subscriber, [bosses: boss_list]}]
 
     flusheres = [
       {Bluec.Flusher, [bosses: boss_list]}
