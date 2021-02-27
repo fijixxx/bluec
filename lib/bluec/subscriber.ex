@@ -14,8 +14,12 @@ defmodule Bluec.Subscriber do
 
     search_path =
       case boss do
-        "GB" -> "Lv120 ゴッドガード・ブローディア"
-        "Gr" -> "Lv120 グリームニル"
+        "Shi" -> "Lv120 シヴァ"
+        "Eur" -> "Lv120 エウロペ"
+        "God" -> "Lv120 ゴッドガード・ブローディア"
+        "Grim" -> "Lv120 グリームニル"
+        "Met" -> "Lv120 メタトロン"
+        "Ava" -> "Lv120 アバター"
       end
 
     Task.start_link(fn ->

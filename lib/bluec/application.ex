@@ -14,16 +14,31 @@ defmodule Bluec.Application do
       access_token_secret: System.get_env("TWITTER_ACCESS_SECRET")
     )
 
-    children = [
-      {Plug.Cowboy, scheme: :http, plug: Bluec.Router, options: [port: cowboy_port()]},
-      {Bluec.State, [boss: "GB"]},
-      {Bluec.State, [boss: "Gr"]},
-      {Bluec.Subscriber, [boss: "GB"]},
-      {Bluec.Subscriber, [boss: "Gr"]},
-      {Bluec.Flusher, []}
-      # Starts a worker by calling: Bluec.Worker.start_link(arg)
-      # {Bluec.Worker, arg}
+    boss_list = [
+      "Shi",
+      "Eur",
+      "God",
+      "Grim",
+      "Met",
+      "Ava"
     ]
+
+    server = [
+      {Plug.Cowboy, scheme: :http, plug: Bluec.Router, options: [port: cowboy_port()]}
+    ]
+
+    states = Enum.map(boss_list, fn x -> {Bluec.State, [boss: x]} end)
+    subscribers = Enum.map(boss_list, fn x -> {Bluec.Subscriber, [boss: x]} end)
+
+    flusheres = [
+      {Bluec.Flusher, [bosses: boss_list]}
+    ]
+
+    children = server ++ states ++ subscribers ++ flusheres
+
+    #   # Starts a worker by calling: Bluec.Worker.start_link(arg)
+    #   # {Bluec.Worker, arg}
+    # ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
